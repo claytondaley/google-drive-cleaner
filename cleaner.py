@@ -1,15 +1,14 @@
 #!/usr/bin/python
 
 import httplib2
-import pprint
-import sys
-
-from apiclient.discovery import build
-from apiclient import errors
-from oauth2client.client import OAuth2WebServerFlow, OAuth2Credentials
-
 from pprint import pprint
+
+import apiclient.discovery
+from apiclient import errors
+from oauth2client.client import OAuth2WebServerFlow
+
 from config import *
+
 
 def update_permission(service, file_id, permission_id, new_role):
     """Update a permission's role.
@@ -139,14 +138,9 @@ def build_connection():
     # Create an httplib2.Http object and authorize it with our credentials
     http = httplib2.Http()
     http = credentials.authorize(http)
-    drive_service = build('drive', 'v2', http=http)
+    drive_service = apiclient.discovery.build('drive', 'v2', http=http)
 
     # Create drivecleaner and run it
     dc = DriveCleaner(drive_service)
     dc.updateFiles()
     return dc
-
-
-# initialize global utility classes and call main
-# dc = build_connection()
-
