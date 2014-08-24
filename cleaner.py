@@ -10,30 +10,6 @@ from oauth2client.client import OAuth2WebServerFlow
 from config import *
 
 
-def update_permission(service, file_id, permission_id, new_role):
-    """Update a permission's role.
-
-    Args:
-        service: Drive API service instance.
-        file_id: ID of the file to update permission for.
-        permission_id: ID of the permission to update.
-        new_role: The value 'owner', 'writer' or 'reader'.
-
-    Returns:
-        The updated permission if successful, None otherwise.
-    """
-    try:
-        # First retrieve the permission from the API.
-        permission = service.permissions().get(
-            fileId=file_id, permissionId=permission_id).execute()
-        permission['role'] = new_role
-        return service.permissions().update(
-            fileId=file_id, permissionId=permission_id, body=permission).execute()
-    except errors.HttpError, error:
-        print 'An error occurred: %s' % error
-    return None
-
-
 class DriveCleaner():
     def __init__(self, drive_service):
         self.drive = drive_service
