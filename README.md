@@ -30,6 +30,7 @@ WARNING: This procedure is provided is provided "as is" without express or impli
  - Install pip (http://pip.readthedocs.org/en/latest/installing.html)
  - Install the Google API by running "pip install --upgrade google-api-python-client"
  - Install another required library by runnign "pip install httplib2"
+ - Using a command prompt, change directory into the folder that contains cleaner.py 
  - Start python.  In the python console (once you see >>>), run:
 ```
 from cleaner import *
